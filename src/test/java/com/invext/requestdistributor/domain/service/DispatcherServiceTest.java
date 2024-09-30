@@ -57,7 +57,7 @@ public class DispatcherServiceTest {
         List<Agent> agents = dispatcherService.getTeamAgents().get(team);
 
         // Manually set agents to max load
-        agents.forEach(agent -> agent.setCurrentLoad(DispatcherServiceImpl.MAX_LOAD));
+        agents.forEach(agent -> agent.setCurrentLoad(agent.MAX_LOAD));
 
         // Act
         dispatcherService.dispatchRequest(request4);
@@ -76,11 +76,15 @@ public class DispatcherServiceTest {
         Agent agent = agents.get(0);
 
         // Simulate agent at max load
-        agent.setCurrentLoad(DispatcherServiceImpl.MAX_LOAD);
+        agent.setCurrentLoad(Agent.MAX_LOAD);
+
+        // Simulate other agents also at max load
+        agents.forEach(a -> a.setCurrentLoad(Agent.MAX_LOAD));
 
         // Enqueue a request
         Request queuedRequest = new Request("R5", "Problemas com cartão");
         dispatcherService.dispatchRequest(queuedRequest);
+
 
         // Verify the request is in the queue
         Queue<Request> queue = dispatcherService.getRequestQueues().get(team);
@@ -90,10 +94,11 @@ public class DispatcherServiceTest {
         dispatcherService.agentCompletedRequest(agent.getId());
 
         // Assert
-        assertEquals(DispatcherServiceImpl.MAX_LOAD, agent.getCurrentLoad(),
+        assertEquals(Agent.MAX_LOAD, agent.getCurrentLoad(),
                 "Agent's load should remain the same after completing a request and taking a new one");
 
         // Verify the queue is empty
         assertEquals(0, queue.size(), "Request queue should be empty after assigning to agent");
+
     }
 }

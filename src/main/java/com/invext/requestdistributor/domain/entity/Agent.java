@@ -10,7 +10,7 @@ public class Agent {
     private String name;
     private Team team;
     private int currentLoad = 0;
-    private static final int MAX_LOAD = 3;
+    public static final int MAX_LOAD = 3;
 
     public Agent(String id, String name, Team team) {
         this.id = id;
