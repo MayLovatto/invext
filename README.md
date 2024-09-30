@@ -18,7 +18,7 @@ The **Invext Request Distributor** is a Spring Boot application designed to mana
 ## Technologies Used
 
 - **Java 17 (Amazon Corretto 17)**
-- **Spring Boot 3.x**
+- **Spring Boot 3.3.4**
 - **Gradle with Groovy DSL**
 - **Spring Web**
 - **Spring Validation**
@@ -39,7 +39,7 @@ The **Invext Request Distributor** is a Spring Boot application designed to mana
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/invext-request-distributor.git
+   git clone https://github.com/MayLovatto/invext.git
    cd invext-request-distributor
    ```
 
